@@ -6,12 +6,16 @@
 package cuentas;
 
 /**
+ * Clase CCuenta con métodos get/set para los datos de cuenta y métodos para conocer
+ * el saldo actual, el tipo de interés, realizar ingresos o retirar dinero.
  *
  * @author carme
  */
 public class CCuenta {
 
     /**
+     * Devuelve el nombre
+     * 
      * @return the nombre
      */
     public String getNombre() {
@@ -19,6 +23,8 @@ public class CCuenta {
     }
 
     /**
+     * Asigna el nombre 
+     * 
      * @param nombre the nombre to set
      */
     public void setNombre(String nombre) {
@@ -26,6 +32,8 @@ public class CCuenta {
     }
 
     /**
+     * Devuelve la cuenta
+     * 
      * @return the cuenta
      */
     public String getCuenta() {
@@ -33,6 +41,8 @@ public class CCuenta {
     }
 
     /**
+     * Asigna la cuenta 
+     * 
      * @param cuenta the cuenta to set
      */
     public void setCuenta(String cuenta) {
@@ -40,6 +50,8 @@ public class CCuenta {
     }
 
     /**
+     * Devuelve el saldo de la cuenta
+     * 
      * @return the saldo
      */
     public double getSaldo() {
@@ -47,6 +59,8 @@ public class CCuenta {
     }
 
     /**
+     * Asigna el saldo de la cuenta
+     * 
      * @param saldo the saldo to set
      */
     public void setSaldo(double saldo) {
@@ -54,6 +68,8 @@ public class CCuenta {
     }
 
     /**
+     * Devuelve el tipo de interés
+     * 
      * @return the tipoInterés
      */
     public double getTipoInterés() {
@@ -61,6 +77,8 @@ public class CCuenta {
     }
 
     /**
+     * Asigna el tipo de interés
+     * 
      * @param tipoInterés the tipoInterés to set
      */
     public void setTipoInterés(double tipoInterés) {
@@ -72,19 +90,42 @@ public class CCuenta {
     private double saldo;
     private double tipoInterés;
 
+    /**
+     * Método constructor por defecto
+     */
     public CCuenta() {
     }
 
+    /**
+     * Método que inicia las variables
+     * 
+     * @param nom nombre
+     * @param cue cuenta
+     * @param sal saldo
+     * @param tipo tipo interés
+     */
     public CCuenta(String nom, String cue, double sal, double tipo) {
         nombre = nom;
         cuenta = cue;
         saldo = sal;
     }
 
+    /**
+     * Devuelve el estado
+     * 
+     * @return 
+     */
     public double estado() {
         return getSaldo();
     }
 
+    /**
+     * Ante un ingreso, comprueba que la cantidad a ingresar sea mayor a 0,
+     * si no devuelve una excepción. Si cumple la condición, se actualiza el saldo.
+     * 
+     * @param cantidad
+     * @throws Exception 
+     */
     public void ingresar(double cantidad) throws Exception {
         if (cantidad < 0) {
             throw new Exception("No se puede ingresar una cantidad negativa");
@@ -92,6 +133,14 @@ public class CCuenta {
         setSaldo(getSaldo() + cantidad);
     }
 
+    /**
+     * Ante una retirada de saldo, comprueba que no se intente retirar una cantidad superior
+     * al saldo actual y que no sea una cantidad negativa, si no devuelve excepción.
+     * Si cumple las condiciones y se retira saldo, se actualiza el saldo.
+     * 
+     * @param cantidad
+     * @throws Exception 
+     */
     public void retirar(double cantidad) throws Exception {
         if (cantidad <= 0) {
             throw new Exception("No se puede retirar una cantidad negativa");
